@@ -1,0 +1,319 @@
+/* Nombre del alumno: Sofia Nava García  00531263*/
+/* Actividad: Sitio web interactivo utilizando un plugin de jQuery */
+/* Materia: Programación para internet */
+/* Fecha: Lunes 5 de Octubre del 2026 */
+/* Nombre del archivo: style.css */
+
+/* ================= CONFIGURACIÓN Y VARIABLES ================= */
+:root {
+    --sec-par-bg: rgba(255, 250, 245, 0.85); 
+    --sec-impar-bg: rgba(238, 229, 232, 0.85);
+    
+    --bg-color: #f8f3ed;
+    --text-color: #40352f;
+    --header-bg: #fffaf5;
+    --primary-color: #725c75;
+    --primary-hover: #59475d;
+    --accent-color: #9a789c;
+    --secondary-color: #594b45;
+    --border-color: #e8ddd2;
+    --input-bg: #fdf9f5;
+    --card-shadow: rgba(64, 53, 47, 0.08);
+
+    --cielo-halo: rgba(154, 120, 156, 0.15);
+    --cielo-base: #f8f3ed;
+    --cielo-extremo: #fffaf5;
+    --acento-estrellas: #9a789c; 
+}
+
+body.dark-mode {
+    --sec-par-bg: rgba(35, 28, 42, 0.85);
+    --sec-impar-bg: rgba(43, 34, 53, 0.85);
+    
+    --bg-color: #1a1520;
+    --text-color: #e6e0e8;
+    --header-bg: #1f1926;
+    --primary-color: #9a789c;
+    --primary-hover: #b79dc4;
+    --accent-color: #c9b2c9;
+    --secondary-color: #7e6c82;
+    --border-color: #443750;
+    --input-bg: #352b46;
+    --card-shadow: rgba(0, 0, 0, 0.5);
+
+    --cielo-halo: rgba(154, 120, 156, 0.25);
+    --cielo-base: #1a1520;
+    --cielo-extremo: #0a080d;
+    --acento-estrellas: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background-color: transparent; 
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: color 0.4s;
+}
+
+/* ================= FONDO ESPACIAL ================= */
+.fondo-espacial {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+    background: radial-gradient(circle at 50% 20%, var(--cielo-halo) 0%, var(--cielo-base) 50%, var(--cielo-extremo) 100%);
+    overflow: hidden; pointer-events: none; transition: background 0.4s;
+}
+.estrellas-fijas {
+    width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(1.5px 1.5px at 40px 60px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 150px 220px, var(--acento-estrellas), transparent),
+        radial-gradient(1.5px 1.5px at 300px 110px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 480px 340px, var(--acento-estrellas), transparent),
+        radial-gradient(2px 2px at 650px 80px, var(--acento-estrellas), transparent),
+        radial-gradient(1px 1px at 820px 260px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 960px 150px, var(--acento-estrellas), transparent),
+        radial-gradient(1px 1px at 1150px 300px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 1300px 90px, var(--acento-estrellas), transparent);
+    background-size: 650px 420px;
+    animation: parpadeoEstrellas 6s infinite alternate ease-in-out;
+}
+@keyframes parpadeoEstrellas {
+    0%   { opacity: 0.35; }
+    100% { opacity: 0.85; }
+}
+.estrella-fugaz {
+    position: absolute; top: -10%; left: 50%; width: 120px; height: 1.5px;
+    background: linear-gradient(-45deg, var(--acento-estrellas), transparent);
+    border-radius: 999px; transform: rotate(-35deg); opacity: 0;
+    animation: caidaFugaz 11s infinite ease-in;
+}
+.estrella-fugaz:nth-child(2) { top: 8%;  left: 85%; animation-delay: 0s;   animation-duration: 9s; }
+.estrella-fugaz:nth-child(3) { top: 25%; left: 95%; animation-delay: 3.5s; animation-duration: 11s; }
+.estrella-fugaz:nth-child(4) { top: 5%;  left: 55%; animation-delay: 6.2s; animation-duration: 8.5s; }
+.estrella-fugaz:nth-child(5) { top: 40%; left: 90%; animation-delay: 8.5s; animation-duration: 10.5s; }
+.estrella-fugaz:nth-child(6) { top: 15%; left: 70%; animation-delay: 10s;  animation-duration: 9.5s; }
+
+@keyframes caidaFugaz {
+    0% { transform: translateX(0) translateY(0) rotate(-35deg); opacity: 0.9; }
+    18%, 100% { transform: translateX(-600px) translateY(420px) rotate(-35deg); opacity: 0; }
+}
+
+/* ================= BOTÓN IR ARRIBA ================= */
+#btn-arriba {
+    position: fixed; bottom: 30px; right: 30px; background-color: var(--primary-color);
+    color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px;
+    cursor: pointer; display: none; z-index: 100; box-shadow: 0 4px 10px var(--card-shadow); transition: 0.3s;
+}
+#btn-arriba:hover { background-color: var(--primary-hover); transform: scale(1.1); }
+
+/* ================= ENCABEZADO Y NAV ================= */
+header {
+    background-color: var(--header-bg); display: flex; justify-content: space-between; 
+    align-items: center; padding: 22px 8%; border-bottom: 1px solid var(--border-color);
+    position: sticky; top: 0; z-index: 10; transition: 0.4s;
+}
+.logo { font-size: 24px; font-weight: bold; color: var(--primary-color); }
+.logo span { font-size: 32px; }
+nav { display: flex; gap: 30px; align-items: center; }
+nav a { text-decoration: none; color: var(--text-color); font-size: 15px; font-weight: bold; transition: 0.3s; }
+nav a:hover { color: var(--accent-color); }
+
+/* ================= SECCIONES GENERALES ================= */
+section { padding: 80px 8%; position: relative; z-index: 2; }
+.seccion-par { background-color: var(--sec-par-bg); transition: background-color 0.4s; }
+.seccion-impar { background-color: var(--sec-impar-bg); transition: background-color 0.4s; }
+.subtitulo { color: var(--accent-color); font-size: 13px; letter-spacing: 3px; font-weight: bold; margin-bottom: 12px; }
+.titulo-seccion { text-align: center; margin-bottom: 35px; }
+.tip-interactivo { margin-top: 10px; font-size: 15px; color: var(--primary-color); }
+h2 { font-size: 40px; color: var(--text-color); }
+h3 { color: var(--primary-color); margin-bottom: 12px; }
+h4 { color: var(--secondary-color); margin: 15px 0 8px 0; }
+
+/* ================= INICIO ================= */
+.inicio {
+    min-height: 620px; display: flex; align-items: center;
+    justify-content: space-between; gap: 50px; background-color: var(--sec-impar-bg);
+}
+.texto-inicio { max-width: 500px; }
+.texto-inicio h1 { font-size: 52px; line-height: 1.1; margin-bottom: 10px; color: var(--text-color); }
+.texto-inicio h1 span { color: var(--primary-color); }
+.texto-inicio p:not(.subtitulo) { font-size: 18px; margin-bottom: 30px; }
+
+/* Reloj convertido a CSS */
+#reloj { font-weight: bold; color: var(--accent-color); margin-bottom: 20px; font-size: 1.1em; }
+
+/* BOTONES */
+.boton {
+    display: inline-block; background-color: var(--primary-color); color: white;
+    padding: 12px 22px; border-radius: 25px; text-decoration: none; border: none;
+    font-family: inherit; font-size: 14px; cursor: pointer; transition: 0.3s;
+}
+.boton:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+.controles-jquery { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+.boton-pequeno {
+    background-color: var(--accent-color); color: white; border: none; padding: 9px 18px;
+    border-radius: 20px; font-family: inherit; font-size: 13px; cursor: pointer; transition: 0.3s; font-weight: bold;
+}
+.boton-pequeno:hover { background-color: var(--primary-color); }
+.boton-secundario { background-color: var(--secondary-color); }
+
+/* CARRUSEL INICIO */
+.carrusel { width: 620px; overflow: hidden; }
+.libros { display: flex; gap: 20px; animation: moverLibros 15s infinite; }
+.libro { min-width: 260px; height: 370px; overflow: hidden; border-radius: 12px; box-shadow: 0 15px 30px var(--card-shadow); }
+.libro img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes moverLibros {
+    0%, 12%   { transform: translateX(0); }
+    18%, 28%  { transform: translateX(-280px); }
+    34%, 44%  { transform: translateX(-560px); }
+    50%, 60%  { transform: translateX(-840px); }
+    66%, 76%  { transform: translateX(-1120px); }
+    82%, 92%  { transform: translateX(-1220px); }
+    100%      { transform: translateX(0); }
+}
+
+/* ================= DISEÑO SOBRE MÍ (VISOR JQUERY) ================= */
+.contenedor-sobre-mi { max-width: 1000px; margin: 0 auto; }
+.perfil-layout { display: flex; gap: 50px; align-items: center; margin-bottom: 30px; }
+.texto-perfil { flex: 1; text-align: left; }
+
+/* Clases nuevas extraídas de tu HTML */
+.perfil-header { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; }
+.nombre-perfil { font-size: 32px; color: var(--text-color); margin-bottom: 5px; }
+.profesion-perfil { color: var(--accent-color); font-weight: bold; letter-spacing: 2px; font-size: 13px; }
+.descripcion-perfil { font-size: 17px; margin-bottom: 15px; }
+
+/* Galería Visor */
+.galeria-perfil { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+.visor-principal {
+    width: 100%; height: 320px; border-radius: 12px; overflow: hidden;
+    border: 2px solid var(--border-color); box-shadow: 0 10px 25px var(--card-shadow);
+    background-color: var(--input-bg);
+}
+.visor-principal img { width: 100%; height: 100%; object-fit: cover; }
+
+.miniaturas-contenedor { display: flex; justify-content: space-between; gap: 10px; }
+.miniatura {
+    width: 23%; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer;
+    opacity: 0.5; transition: 0.3s; border: 2px solid transparent;
+}
+.miniatura:hover { opacity: 0.9; }
+.miniatura.activa { 
+    opacity: 1; border-color: var(--accent-color); 
+    transform: translateY(-3px); box-shadow: 0 4px 10px var(--card-shadow); 
+}
+
+/* ================= TARJETAS DEL BXSLIDER ================= */
+.contenedor-slider { margin-top: 60px; }
+.tarjeta-slider { 
+    background-color: var(--input-bg); border-radius: 12px; padding: 25px; 
+    text-align: center; border: 1px solid var(--border-color); 
+    box-shadow: 0 5px 15px var(--card-shadow); margin: 10px; 
+}
+.img-tarjeta-slider {
+    width: 100%; height: 160px; object-fit: cover; 
+    border-radius: 8px; margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.bx-wrapper { 
+    margin: 0 auto 20px !important; border: none !important; 
+    background: transparent !important; box-shadow: none !important; 
+}
+
+/* ================= COLECCIONES ================= */
+.instruccion-colecciones { margin-top: 15px; }
+.contenedor-colecciones { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
+.tarjeta-coleccion {
+    background-color: var(--input-bg); border: 1px solid var(--border-color); border-radius: 15px; 
+    padding: 35px 20px; width: 280px; text-align: center; text-decoration: none; 
+    color: var(--text-color); transition: all 0.4s ease; box-shadow: 0 8px 20px var(--card-shadow);
+}
+.icono-coleccion { font-size: 50px; margin-bottom: 15px; }
+.tarjeta-coleccion h3 { font-size: 24px; margin-bottom: 10px; color: var(--text-color); }
+.tarjeta-coleccion p { font-size: 15px; }
+.tarjeta-coleccion:hover {
+    transform: translateY(-10px) scale(1.05); border-color: var(--accent-color);
+    background-color: var(--primary-color); color: white;
+}
+.tarjeta-coleccion:hover h3 { color: white; }
+
+/* ================= ESTRUCTURA Y TARJETAS ORIGINALES ================= */
+.contenedor-seccion { display: flex; align-items: flex-start; gap: 30px; max-width: 1250px; margin: auto; }
+.sidebar {
+    width: 28%; background-color: var(--input-bg); padding: 28px;
+    border-radius: 12px; border: 1px solid var(--border-color);
+    box-shadow: 0 6px 16px var(--card-shadow); transition: 0.4s;
+}
+.sidebar p { margin-bottom: 12px; font-size: 15px; }
+.sidebar ul { margin-left: 20px; margin-bottom: 20px; font-size: 14px; }
+.sidebar li { margin-bottom: 5px; }
+.btn-toggle-sidebar { width: 100%; text-align: center; }
+
+.tarjetas { width: 72%; display: flex; justify-content: space-between; gap: 20px; padding: 15px; border-radius: 12px; transition: background-color 0.4s; }
+.tarjeta {
+    background-color: var(--input-bg); padding: 25px; width: 32%; border-radius: 10px;
+    border: 1px solid var(--border-color); box-shadow: 0 8px 20px var(--card-shadow);
+    transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between;
+    text-align: center; cursor: pointer;
+}
+
+.numero { font-size: 12px; letter-spacing: 1px; color: var(--accent-color); font-weight: bold; margin-bottom: 8px; }
+.imagen-tarjeta { width: 120px; height: 170px; object-fit: cover; display: block; margin: 10px auto 15px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.12); }
+.info-tarjeta { font-size: 14px; margin-bottom: 15px; }
+.boton-info {
+    background-color: var(--sec-impar-bg); color: var(--primary-color); border: 1px solid var(--accent-color);
+    padding: 8px 12px; border-radius: 18px; font-family: inherit; font-size: 13px; font-weight: bold; cursor: pointer; transition: 0.2s;
+}
+.boton-info:hover { background-color: var(--primary-color); color: #fff; }
+
+/* ================= CONTACTO Y FORMULARIO ================= */
+.contacto { background-color: var(--sec-impar-bg); }
+
+/* Clases limpiadas del formulario y mapa */
+.contenedor-contacto { display: flex; gap: 30px; max-width: 1000px; margin: 0 auto; flex-wrap: wrap; }
+form {
+    flex: 1; min-width: 300px; margin: 0;
+    display: flex; flex-direction: column; background-color: var(--input-bg);
+    padding: 35px; border-radius: 12px; box-shadow: 0 8px 20px var(--card-shadow); transition: 0.4s;
+}
+form label { margin-bottom: 7px; font-weight: bold; color: var(--secondary-color); text-align: left; }
+form input, form select, form textarea {
+    font-family: inherit; font-size: 15px; padding: 13px; margin-bottom: 20px;
+    border: 1px solid var(--border-color); border-radius: 7px;
+    background-color: var(--sec-par-bg); color: var(--text-color); outline: none; transition: 0.3s;
+}
+form input:focus, form select:focus, form textarea:focus { border-color: var(--accent-color); }
+#vista-previa-form { font-size: 14px; color: var(--primary-color); font-style: italic; margin-bottom: 18px; text-align: left; }
+#error-msg { color: red; font-size: 14px; display: none; font-weight: bold; margin-bottom: 10px; }
+
+form button { border: none; background-color: var(--primary-color); color: white; padding: 14px; border-radius: 25px; font-family: inherit; font-size: 16px; cursor: pointer; transition: 0.3s; }
+form button:hover { background-color: var(--primary-hover); }
+
+.mapa { flex: 1; min-width: 300px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 8px 20px var(--card-shadow); }
+.mapa iframe { border: 0; min-height: 350px; width: 100%; height: 100%; }
+
+
+/* ================= FOOTER ================= */
+footer { background-color: var(--primary-color); color: #eee5e8; text-align: center; padding: 45px 8%; position: relative; z-index: 2;}
+footer .logo { color: #eee5e8; margin-bottom: 10px; }
+.enlaces-footer { display: flex; justify-content: center; gap: 25px; margin: 20px 0; }
+.enlaces-footer a { color: #eee5e8; text-decoration: none; }
+.enlaces-footer a:hover { color: #c9b2c9; }
+
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 950px) {
+    header { flex-direction: column; gap: 15px; }
+    nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
+    .inicio { flex-direction: column; text-align: center; }
+    .carrusel { width: 300px; }
+    .perfil-layout { flex-direction: column; text-align: center; }
+    .texto-perfil { text-align: center; }
+    .perfil-header { justify-content: center; }
+    .galeria-perfil { width: 100%; }
+    .contenedor-seccion { flex-direction: column; }
+    .sidebar, .tarjetas { width: 100%; }
+    .tarjetas { flex-direction: column; }
+    .tarjeta { width: 100%; }
+}
