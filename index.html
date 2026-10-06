@@ -1,0 +1,348 @@
+<!-- Nombre del alumno: Sofia Nava García  00531263 -->
+<!-- Actividad: Sitio web interactivo utilizando un plugin de jQuery -->
+<!-- Materia: Programación para internet -->
+<!-- Fecha: Lunes 5 de Octubre del 2026 -->
+<!-- Nombre del archivo: index.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Favoritos | Películas, Series y Libros</title>
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <!-- CSS del Plugin: bxSlider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+
+    <!-- Conexión con CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- ================= FONDO ESPACIAL: ESTRELLAS Y FUGACES ================= -->
+    <div class="fondo-espacial" aria-hidden="true">
+        <div class="estrellas-fijas"></div>
+        <span class="estrella-fugaz"></span>
+        <span class="estrella-fugaz"></span>
+        <span class="estrella-fugaz"></span>
+        <span class="estrella-fugaz"></span>
+        <span class="estrella-fugaz"></span>
+    </div>
+
+    <!-- Botón Ir Arriba -->
+    <button id="btn-arriba">⬆</button>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="logo">
+            <span>✨</span> Mis Favoritos
+        </div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#sobre-mi">Sobre Mí</a>
+            <a href="#seccion-contenido">Contenido</a>
+            <a href="#contacto">Contacto</a>
+            <button id="btn-tema" class="boton-pequeno">🌙 Modo Oscuro</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ================= INICIO ================= -->
+        <section id="inicio" class="inicio">
+            <div class="texto-inicio">
+                <p class="subtitulo">TODO LO QUE HE ELEGIDO VER, LEER Y RECORDAR</p>
+                <h1 id="titulo-principal">Bienvenid@ a <br><span>Mi sección de favoritos</span></h1>
+                
+                <!-- Reloj -->
+                <p id="reloj"></p>
+
+                <p>Aquí se encuentra mi colección de películas, series y libros que me han atrapado de principio a fin y que siempre recomiendo.</p>
+                <a href="#seccion-contenido" class="boton">Explorar mi colección</a>
+            </div>
+
+            <div class="carrusel">
+                <div class="libros">
+                    <div class="libro"><img src="img/principal1.jpg" alt="Favorito 1"></div>
+                    <div class="libro"><img src="img/principal2.jpg" alt="Favorito 2"></div>
+                    <div class="libro"><img src="img/principal3.jpg" alt="Favorito 3"></div>
+                    <div class="libro"><img src="img/principal4.jpg" alt="Favorito 4"></div>
+                    <div class="libro"><img src="img/principal5.jpg" alt="Favorito 5"></div>
+                    <div class="libro"><img src="img/principal6.jpg" alt="Favorito 6"></div>
+                    <div class="libro"><img src="img/principal7.jpg" alt="Favorito 7"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SOBRE MÍ (NOSOTROS) ================= -->
+        <section id="sobre-mi" class="seccion-par">
+            <div class="titulo-seccion">
+                <p class="subtitulo">CONÓCEME UN POCO MÁS</p>
+                <h2>Sobre Mí</h2>
+            </div>
+            
+            <div class="contenedor-sobre-mi">
+                
+                <!-- GALERÍA Y DATOS BASE -->
+                <div class="perfil-layout">
+
+                    <!-- Textos -->
+                    <div class="texto-perfil">
+                        <!-- Nombre -->
+                        <div class="perfil-header">
+                            <div>
+                                <h3 class="nombre-perfil">Sofía Nava</h3>
+                                <p class="profesion-perfil">INGENIERA & DISEÑADORA</p>
+                            </div>
+                        </div>
+
+                        <!-- Descripción -->
+                        <p class="descripcion-perfil">
+                            ¡Hola! Soy estudiante de Ingeniería en Tecnologías de la Información y Negocios Digitales. Soy de Durango y me gusta crear proyectos digitales, desarrollar código y diseñar.
+                        </p>
+                        <p class="descripcion-perfil">
+                            En mi tiempo libre disfruto pintar, ver películas y series, pasar tiempo con mis amigos y familia, y sobre todo sumergirme en buenas historias. 
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= CONTENIDO ================= -->
+        <section id="seccion-contenido" class="seccion-impar">
+            <div class="titulo-seccion">
+                <p class="subtitulo">EXPLORA MIS FAVORITOS</p>
+                <h2>Mis Colecciones</h2>
+                <p class="instruccion-colecciones">Descubre un poco más sobre mí a través de las películas, series y libros que más me gustan</p>
+            </div>
+            
+            <div class="contenedor-colecciones">
+                <a href="#peliculas" class="tarjeta-coleccion">
+                    <div class="icono-coleccion">🎬</div>
+                    <h3>Películas</h3>
+                    <p>Historias que me transportaron a la gran pantalla.</p>
+                </a>
+                <a href="#series" class="tarjeta-coleccion">
+                    <div class="icono-coleccion">📺</div>
+                    <h3>Series</h3>
+                    <p>Maratones de drama, atracos y época inolvidables.</p>
+                </a>
+                <a href="#libros" class="tarjeta-coleccion">
+                    <div class="icono-coleccion">📚</div>
+                    <h3>Libros</h3>
+                    <p>Fantasía, misterio y mundos enteros de papel.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN 1: PELÍCULAS ================= -->
+        <section id="peliculas" class="seccion-par">
+            <div class="titulo-seccion">
+                <p class="subtitulo">HISTORIAS EN LA GRAN PANTALLA</p>
+                <h2>Mis Películas Favoritas</h2>
+            </div>
+            <div class="controles-jquery">
+                <button id="btn-fade-pelis" class="boton-pequeno">Modo mágico</button>
+                <button id="btn-dom-pelis" class="boton-pequeno">Mis especiales</button>
+                <button id="btn-reset" class="boton-pequeno boton-secundario">Restaurar ↩ </button>
+            </div>
+            <div class="contenedor-seccion">
+                <aside class="sidebar">
+                    <h3>¿Qué cine me gusta?</h3>
+                    <div class="contenido-sidebar">
+                        <p class="parrafo-gustos">Me gustan las películas que logran transportarme a otras historias, especialmente las adaptaciones de libros y las animadas.</p>
+                        <h4>Géneros que más veo:</h4>
+                        <ul>
+                            <li>Comedia y romance</li>
+                            <li>Adaptaciones literarias</li>
+                            <li>Ciencia Ficción</li>
+                            <li>Animadas</li>
+                        </ul>
+                    </div>
+                    <button class="boton btn-toggle-sidebar" id="btn-sidebar-pelis">Ocultar / Mostrar gustos</button>
+                </aside>
+                <div class="tarjetas" id="contenedor-peliculas">
+                    <article class="tarjeta">
+                        <div class="numero">PELÍCULA 01</div>
+                        <h3>Cómo entrenar a tu dragón</h3>
+                        <img src="img/peli1.jpg" alt="Cómo entrenar a tu dragón" class="imagen-tarjeta">
+                        <p class="info-tarjeta">En un mundo donde los vikingos y los dragones son enemigos, un encuentro inesperado cambiará todo.</p>
+                        <button class="boton-info">Ocultar info</button>
+                    </article>
+                    <article class="tarjeta">
+                        <div class="numero">PELÍCULA 02</div>
+                        <h3>Proyecto Hail Mary</h3>
+                        <img src="img/peli2.jpg" alt="Proyecto Hail Mary" class="imagen-tarjeta">
+                        <p class="info-tarjeta">Un hombre despierta solo en el espacio sin recuerdos, con una misión vital por cumplir.</p>
+                        <button class="boton-info">Ocultar info</button>
+                    </article>
+                    <article class="tarjeta" id="tarjeta-destacada">
+                        <div class="numero">PELÍCULA 03</div>
+                        <h3>Propuesta de año bisiesto</h3>
+                        <img src="img/peli3.jpg" alt="Propuesta de año bisiesto" class="imagen-tarjeta">
+                        <p class="info-tarjeta">Una mujer viaja hasta Irlanda para hacer una propuesta que parece sencilla, pero todo se complica.</p>
+                        <button class="boton-info">Ocultar info</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN 2: SERIES ================= -->
+        <section id="series" class="seccion-impar">
+            <div class="titulo-seccion">
+                <p class="subtitulo">MARATONES INOLVIDABLES</p>
+                <h2>Mis Series Favoritas</h2>
+            </div>
+            <div class="controles-jquery">
+                <button id="btn-slide-series" class="boton-pequeno">Modo Mágico</button>
+                <button id="btn-dom-eq" class="boton-pequeno">Mi clásico personal</button>
+                <button id="btn-reset-series" class="boton-pequeno boton-secundario">Restaurar ↩ </button>
+            </div>
+            <div class="contenedor-seccion">
+                <aside class="sidebar">
+                    <h3>¿Cómo elijo una serie?</h3>
+                    <div class="contenido-sidebar">
+                        <p class="parrafo-gustos">Me gustan mucho las series de drama y de época, especialmente las de atracos y aquellas inspiradas en sagas literarias.</p>
+                        <h4>Mis géneros favoritos:</h4>
+                        <ul>
+                            <li>Fantasía épica</li>
+                            <li>Ciencia Ficción</li>
+                            <li>Drama histórico</li>
+                        </ul>
+                    </div>
+                    <button class="boton btn-toggle-sidebar" id="btn-sidebar-series">Ocultar / Mostrar gustos</button>
+                </aside>
+                <div class="tarjetas" id="contenedor-series">
+                    <article class="tarjeta">
+                        <div class="numero">SERIE 01</div>
+                        <h3>Percy Jackson</h3>
+                        <img src="img/serie1.jpg" alt="Percy Jackson" class="imagen-tarjeta">
+                        <p class="info-tarjeta">Un adolescente descubre que es un semidiós y comienza una aventura llena de mitología y monstruos.</p>
+                        <button class="boton-info">Ocultar info</button>
+                    </article>
+                    <article class="tarjeta">
+                        <div class="numero">SERIE 02</div>
+                        <h3>Anne with an E</h3>
+                        <img src="img/serie2.jpg" alt="Anne with an E" class="imagen-tarjeta">
+                        <p class="info-tarjeta">Una joven huérfana con una imaginación enorme llega por accidente a un pueblo y cambia sus vidas.</p>
+                        <button class="boton-info">Ocultar info</button>
+                    </article>
+                    <article class="tarjeta">
+                        <div class="numero">SERIE 03</div>
+                        <h3>El maestro de la evasión</h3>
+                        <img src="img/serie3.jpg" alt="El maestro de la evasión" class="imagen-tarjeta">
+                        <p class="info-tarjeta">En el Londres del siglo XIX, un joven con talento para escapar termina rodeado de secretos.</p>
+                        <button class="boton-info">Ocultar info</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN 3: LIBROS ================= -->
+        <section id="libros" class="seccion-par">
+            <div class="titulo-seccion">
+                <p class="subtitulo">LIBROS QUE PARA MÍ VALEN LA PENA</p>
+                <h2>Mi Librero</h2>
+                <p class="tip-interactivo">✨ <em>Tip: Haz <strong>doble clic</strong> sobre cualquier tarjeta para una sorpresa.</em></p>
+            </div>
+            <div class="contenedor-seccion">
+                <aside class="sidebar">
+                    <h3>Mi forma de leer</h3>
+                    <div class="contenido-sidebar">
+                        <p class="parrafo-gustos">Lo que más me convence son los mundos bien construidos y las tramas que no puedes soltar.</p>
+                        <h4>Mis géneros literarios:</h4>
+                        <ul>
+                            <li>Fantasía y distopía</li>
+                            <li>Ciencia ficción</li>
+                            <li>Romance y misterio</li>
+                            <li>Novela histórica</li>
+                        </ul>
+                    </div>
+                    <button class="boton btn-toggle-sidebar" id="btn-sidebar-libros">Ocultar / Mostrar gustos</button>
+                </aside>
+                <div class="tarjetas" id="contenedor-libros">
+                    <article class="tarjeta">
+                        <div class="numero">LIBRO 01</div>
+                        <h3>Seis de cuervos</h3>
+                        <img src="img/libro1.jpg" alt="Seis de cuervos" class="imagen-tarjeta">
+                        <p class="info-tarjeta">Una ciudad de estafas donde un atraco imposible está a punto de cambiarlo todo.</p>
+                        <button class="boton-info">Ocultar info</button>
+                    </article>
+                    <article class="tarjeta">
+                        <div class="numero">LIBRO 02</div>
+                        <h3>The Maze Runner</h3>
+                        <img src="img/libro2.jpg" alt="The Maze Runner" class="imagen-tarjeta">
+                        <p class="info-tarjeta">Un enorme laberinto que cambia cada noche y esconde oscuros secretos detrás de sus muros.</p>
+                        <button class="boton-info">Ocultar info</button>
+                    </article>
+                    <article class="tarjeta">
+                        <div class="numero">LIBRO 03</div>
+                        <h3>Juego de tronos</h3>
+                        <img src="img/libro3.jpg" alt="Juego de tronos" class="imagen-tarjeta">
+                        <p class="info-tarjeta">Un reino dividido por alianzas, mientras una amenaza antigua despierta más allá del muro.</p>
+                        <button class="boton-info">Ocultar info</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACTO Y FORMULARIO Y MAPA ================= -->
+        <section id="contacto" class="contacto">
+            <div class="titulo-seccion">
+                <p class="subtitulo">COMPARTAMOS HISTORIAS</p>
+                <h2>¿Qué me recomiendas ver o leer?</h2>
+            </div>
+
+            <div class="contenedor-contacto">
+                <form id="form-recomendacion">
+                    <label for="nombre">Tu Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre">
+
+                    <label for="correo">Tu Correo</label>
+                    <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com">
+
+                    <label for="asunto">Asunto</label>
+                    <input type="text" id="asunto" name="asunto" placeholder="Ej: Sugerencia de Película">
+
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria" name="categoria">
+                        <option value="Película">Película</option>
+                        <option value="Serie">Serie</option>
+                        <option value="Libro">Libro</option>
+                    </select>
+
+                    <label for="mensaje">Título y reseña</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe el título y tu reseña..."></textarea>
+
+                    <p id="vista-previa-form">Escribe tu nombre para ver la vista previa...</p>
+                    <p id="error-msg"></p>
+
+                    <button type="submit" id="btn-enviar">Enviar recomendación</button>
+                </form>
+
+                <div class="mapa">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.525386240292!2d-100.34768542518695!3d20.64819370074175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d35c799c76f783%3A0x2b87397582534a68!2sCuatro%20Caminos%20237%2C%20El%20Refugio%2C%2076146%20El%20Refugio%2C%20Qro.!5e0!3m2!1ses-419!2smx!4v1791233760136!5m2!1ses-419!2smx" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="logo"><span>✨</span> Mis Favoritos</div>
+        <p>TODO LO QUE HE ELEGIDO VER, LEER Y RECORDAR</p>
+        <div class="enlaces-footer">
+            <a href="#inicio">Inicio</a>
+            <a href="#sobre-mi">Sobre Mí</a>
+            <a href="#seccion-contenido">Contenido</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </footer>
+
+    <!-- LIBRERÍAS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
