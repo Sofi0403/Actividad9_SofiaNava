@@ -31,6 +31,7 @@
     </div>
 
     <!-- Botón Ir Arriba -->
+    <!-- Botón controlado por jQuery para hacer scroll automático hacia el inicio de la página -->
     <button id="btn-arriba">⬆</button>
 
     <!-- ENCABEZADO -->
@@ -38,6 +39,7 @@
         <div class="logo">
             <span>✨</span> Mis Favoritos
         </div>
+        <!-- Menú de navegación principal con anclas a cada sección y el botón de Modo Oscuro -->
         <nav>
             <a href="#inicio">Inicio</a>
             <a href="#sobre-mi">Sobre Mí</a>
@@ -61,6 +63,7 @@
                 <a href="#seccion-contenido" class="boton">Explorar mi colección</a>
             </div>
 
+            <!-- Carrusel de imágenes infinito creado exclusivamente con CSS -->
             <div class="carrusel">
                 <div class="libros">
                     <div class="libro"><img src="img/principal1.jpg" alt="Favorito 1"></div>
@@ -123,6 +126,7 @@
 
                 <!-- Plugin: bxSlider con tarjetitas -->
                 <div class="contenedor-slider">
+                    <!-- Cada div hijo directo de .slider-sobre-mi será convertido en un "slide" por el plugin -->
                     <div class="slider-sobre-mi">
                         <div>
                             <div class="tarjeta-slider">
@@ -165,6 +169,7 @@
                 <p class="instruccion-colecciones">Descubre un poco más sobre mí a través de las películas, series y libros que más me gustan</p>
             </div>
             
+            <!-- Tarjetas grandes que funcionan como botones de anclaje hacia las secciones inferiores -->
             <div class="contenedor-colecciones">
                 <a href="#peliculas" class="tarjeta-coleccion">
                     <div class="icono-coleccion">🎬</div>
@@ -190,6 +195,7 @@
                 <p class="subtitulo">HISTORIAS EN LA GRAN PANTALLA</p>
                 <h2>Mis Películas Favoritas</h2>
             </div>
+            <!-- Botones de métodos de recorrido y efectos de jQuery -->
             <div class="controles-jquery">
                 <button id="btn-fade-pelis" class="boton-pequeno">Modo mágico</button>
                 <button id="btn-dom-pelis" class="boton-pequeno">Mis especiales</button>
@@ -242,6 +248,8 @@
                 <p class="subtitulo">MARATONES INOLVIDABLES</p>
                 <h2>Mis Series Favoritas</h2>
             </div>
+
+            <!-- Botones de métodos de recorrido y efectos de jQuery -->
             <div class="controles-jquery">
                 <button id="btn-slide-series" class="boton-pequeno">Modo Mágico</button>
                 <button id="btn-dom-eq" class="boton-pequeno">Mi clásico personal</button>
@@ -343,6 +351,7 @@
             </div>
 
             <div class="contenedor-contacto">
+                <!-- Formulario interactivo validado por JavaScript (previene el submit si hay errores) -->
                 <form id="form-recomendacion">
                     <label for="nombre">Tu Nombre</label>
                     <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre">
@@ -360,6 +369,7 @@
                         <option value="Libro">Libro</option>
                     </select>
 
+                    <!-- Párrafos dinámicos gestionados por JS para mostrar retroalimentación y errores -->
                     <label for="mensaje">Título y reseña</label>
                     <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe el título y tu reseña..."></textarea>
 
@@ -369,6 +379,7 @@
                     <button type="submit" id="btn-enviar">Enviar recomendación</button>
                 </form>
 
+                <!-- Iframe interactivo embebido directamente desde Google Maps -->
                 <div class="mapa">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.525386240292!2d-100.34768542518695!3d20.64819370074175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d35c799c76f783%3A0x2b87397582534a68!2sCuatro%20Caminos%20237%2C%20El%20Refugio%2C%2076146%20El%20Refugio%2C%20Qro.!5e0!3m2!1ses-419!2smx!4v1791233760136!5m2!1ses-419!2smx" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
@@ -388,8 +399,11 @@
     </footer>
 
     <!-- LIBRERÍAS -->
+    <!-- Librería central de jQuery cargada mediante la CDN de Google -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Archivo JS del Plugin bxSlider -->
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <!-- Archivo principal JS con la lógica del proyecto -->
     <script src="main.js"></script>
 </body>
 </html>
