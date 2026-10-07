@@ -5,6 +5,7 @@
 /* Nombre del archivo: style.css */
 
 /* ================= CONFIGURACIÓN Y VARIABLES ================= */
+/* Definición de variables de color (Paleta de Modo Claro) */
 :root {
     --sec-par-bg: rgba(255, 250, 245, 0.85); 
     --sec-impar-bg: rgba(238, 229, 232, 0.85);
@@ -26,6 +27,7 @@
     --acento-estrellas: #9a789c; 
 }
 
+/* Redefinición de variables cuando se activa el Modo Oscuro desde jQuery */
 body.dark-mode {
     --sec-par-bg: rgba(35, 28, 42, 0.85);
     --sec-impar-bg: rgba(43, 34, 53, 0.85);
@@ -47,8 +49,11 @@ body.dark-mode {
     --acento-estrellas: #ffffff;
 }
 
+/* Reset básico universal */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+/* Desplazamiento suave para todos los enlaces internos de la página */
 html { scroll-behavior: smooth; }
+/* Estilos base del documento */
 body {
     font-family: Georgia, 'Times New Roman', serif;
     background-color: transparent; 
@@ -63,6 +68,8 @@ body {
     background: radial-gradient(circle at 50% 20%, var(--cielo-halo) 0%, var(--cielo-base) 50%, var(--cielo-extremo) 100%);
     overflow: hidden; pointer-events: none; transition: background 0.4s;
 }
+
+/* Capa de estrellas fijas creadas mediante gradientes radiales múltiples */
 .estrellas-fijas {
     width: 100%; height: 100%;
     background-image: 
@@ -78,22 +85,28 @@ body {
     background-size: 650px 420px;
     animation: parpadeoEstrellas 6s infinite alternate ease-in-out;
 }
+/* Animación de opacidad que simula el parpadeo de las estrellas fijas */
 @keyframes parpadeoEstrellas {
     0%   { opacity: 0.35; }
     100% { opacity: 0.85; }
 }
+
+/* Estilo base de una estrella fugaz (una línea con degradado rotada 35 grados) */
 .estrella-fugaz {
     position: absolute; top: -10%; left: 50%; width: 120px; height: 1.5px;
     background: linear-gradient(-45deg, var(--acento-estrellas), transparent);
     border-radius: 999px; transform: rotate(-35deg); opacity: 0;
     animation: caidaFugaz 11s infinite ease-in;
 }
+
+/* Posiciones y retrasos escalonados para que las 5 estrellas caigan en diferentes tiempos y lugares */
 .estrella-fugaz:nth-child(2) { top: 8%;  left: 85%; animation-delay: 0s;   animation-duration: 9s; }
 .estrella-fugaz:nth-child(3) { top: 25%; left: 95%; animation-delay: 3.5s; animation-duration: 11s; }
 .estrella-fugaz:nth-child(4) { top: 5%;  left: 55%; animation-delay: 6.2s; animation-duration: 8.5s; }
 .estrella-fugaz:nth-child(5) { top: 40%; left: 90%; animation-delay: 8.5s; animation-duration: 10.5s; }
 .estrella-fugaz:nth-child(6) { top: 15%; left: 70%; animation-delay: 10s;  animation-duration: 9.5s; }
 
+/* Animación de traslación diagonal de las estrellas fugaces */
 @keyframes caidaFugaz {
     0% { transform: translateX(0) translateY(0) rotate(-35deg); opacity: 0.9; }
     18%, 100% { transform: translateX(-600px) translateY(420px) rotate(-35deg); opacity: 0; }
@@ -143,13 +156,15 @@ h4 { color: var(--secondary-color); margin: 15px 0 8px 0; }
 /* Reloj convertido a CSS */
 #reloj { font-weight: bold; color: var(--accent-color); margin-bottom: 20px; font-size: 1.1em; }
 
-/* BOTONES */
+/* BOTONES GLOBALES*/
 .boton {
     display: inline-block; background-color: var(--primary-color); color: white;
     padding: 12px 22px; border-radius: 25px; text-decoration: none; border: none;
     font-family: inherit; font-size: 14px; cursor: pointer; transition: 0.3s;
 }
 .boton:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+
+/* Controles de jQuery (Botones superiores) */
 .controles-jquery { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
 .boton-pequeno {
     background-color: var(--accent-color); color: white; border: none; padding: 9px 18px;
