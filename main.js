@@ -19,6 +19,22 @@ $(document).ready(function(){
     actualizarReloj();
 
     // =========================================================================
+    // BOTÓN "IR ARRIBA"
+    // =========================================================================
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 300) {
+            $('#btn-arriba').fadeIn();
+        } else {
+            $('#btn-arriba').fadeOut();
+        }
+    });
+
+    $('#btn-arriba').click(function() {
+        $('html, body').animate({scrollTop: 0}, 600);
+        return false;
+    });
+
+    // =========================================================================
     // MODO OSCURO / MODO CLARO
     // =========================================================================
     $('#btn-tema').on('click', function(e) {
