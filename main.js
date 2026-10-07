@@ -9,18 +9,22 @@ $(document).ready(function(){
     // =========================================================================
     // RELOJ / FECHA Y HORA ACTUAL
     // =========================================================================
+    // Función que calcula la fecha/hora actual y la formatea al español
     function actualizarReloj() {
         var ahora = new Date();
         var opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
         var fechaFormateada = ahora.toLocaleString('es-MX', opciones);
         $('#reloj').text(fechaFormateada);
     }
+
+    // Ejecuta la función 'actualizarReloj' cada 1000 milisegundos 
     setInterval(actualizarReloj, 1000);
     actualizarReloj();
 
     // =========================================================================
     // BOTÓN "IR ARRIBA"
     // =========================================================================
+    // Escucha el evento de desplazamiento (scroll) en toda la ventana del navegador
     $(window).scroll(function() {
         if ($(this).scrollTop() > 300) {
             $('#btn-arriba').fadeIn();
@@ -29,6 +33,7 @@ $(document).ready(function(){
         }
     });
 
+    // Evento de clic para el botón "Ir Arriba"
     $('#btn-arriba').click(function() {
         $('html, body').animate({scrollTop: 0}, 600);
         return false;
@@ -37,10 +42,12 @@ $(document).ready(function(){
     // =========================================================================
     // MODO OSCURO / MODO CLARO
     // =========================================================================
+    // Escucha el clic en el botón de cambiar tema
     $('#btn-tema').on('click', function(e) {
         e.preventDefault();
         $('body').toggleClass('dark-mode');
         
+        // Verifica si el body tiene la clase dark-mode activa para cambiar el texto del botón
         if($('body').hasClass('dark-mode')){
             $(this).text('☀ Modo Claro');
         } else {
@@ -51,6 +58,7 @@ $(document).ready(function(){
     // =========================================================================
     // PLUGIN JQUERY: bxSlider 
     // =========================================================================
+    // Se evita que el error rompa el resto del código JavaScript de la página
     try {
         $('.slider-sobre-mi').bxSlider({
             pause: 3000,
@@ -69,6 +77,7 @@ $(document).ready(function(){
     // =========================================================================
     // MANIPULACIÓN DOM Y EFECTOS // GALERÍA TIPO VISOR CON JQUERY
     // =========================================================================
+    // Escucha el clic en cualquiera de las 4 fotitos miniatura de la sección "Sobre mí"
     $('.miniatura').on('click', function(){
         // Si la imagen ya está activa, no hace nada
         if($(this).hasClass('activa')) {
@@ -90,6 +99,7 @@ $(document).ready(function(){
     // =========================================================================
     // VALIDACIÓN DEL FORMULARIO CON JAVASCRIPT / JQUERY
     // =========================================================================
+    // Se dispara cada vez que el usuario presiona y suelta una tecla en el campo de "Nombre"
     $('#nombre').on('keyup', function(){
         var nombreUsuario = $(this).val();
         var categoriaElegida = $('#categoria').val();
@@ -100,15 +110,18 @@ $(document).ready(function(){
         }
     });
 
+    // Se dispara cuando el usuario selecciona una opción diferente en la lista desplegable
     $('#categoria').on('change', function(){
         var categoriaElegida = $(this).val();
         var nombreUsuario = $('#nombre').val() || 'lector(a)';
         $('#vista-previa-form').text('Categoría actualizada: ' + nombreUsuario + ' recomendará una ' + categoriaElegida + '.');
     });
 
+    // Se dispara cuando el usuario presiona el botón "Enviar" del formulario
     $('#form-recomendacion').on('submit', function(e){
         e.preventDefault(); 
         
+        // Guarda los valores de todos los inputs limpiando espacios extra
         var nombre = $('#nombre').val().trim();
         var correo = $('#correo').val().trim();
         var asunto = $('#asunto').val().trim();
@@ -116,6 +129,7 @@ $(document).ready(function(){
         var categoria = $('#categoria').val();
         var msjError = $('#error-msg');
 
+        // Validaciones
         if(nombre === "" || correo === "" || asunto === "" || mensaje === "") {
             msjError.text('⚠️ Por favor, llena todos los campos para continuar.').slideDown();
             return false;
@@ -141,21 +155,26 @@ $(document).ready(function(){
     // =========================================================================
     // BOTONES (Selectores, Efectos, DOM)
     // =========================================================================
+    // Método css(): Aplica estilos directamente desde jQuery a todos los <h2> de la página
     $('h2').css({ 'letter-spacing': '0.5px' });
 
+    // Modifica todos los párrafos que tengan la clase .parrafo-gustos (Sidebars)
     $('.parrafo-gustos').css({
         'border-left': '3px solid var(--accent-color)',
         'padding-left': '10px'
     });
 
+    // Selector por ID: Modifica específicamente la tarjeta número 3 de la sección películas
     $('#tarjeta-destacada').css({
         'border': '2px solid var(--accent-color)'
     });
 
+    // Botón de sidebar
     $('.btn-toggle-sidebar').on('click', function(){
         $(this).prev('.contenido-sidebar').toggle(500);
     });
 
+    // Botón de las tarjetas
     $('.boton-info').on('click', function(){
         var parrafoInfo = $(this).prev('.info-tarjeta');
         if (parrafoInfo.is(':visible')) {
@@ -167,6 +186,7 @@ $(document).ready(function(){
         }
     });
 
+    // BOTONES EN LAS SECCIONES DE CONTENIDO
     $('#btn-fade-pelis').on('click', function(){
         $('#contenedor-peliculas').find('.tarjeta').fadeOut(600).fadeIn(600);
     });
@@ -196,13 +216,21 @@ $(document).ready(function(){
         $('#contenedor-series .info-tarjeta').show(300);
     });
 
+
+    // =========================================================================
+    // EVENTOS DEL MOUSE EN LAS TARJETAS (Animaciones interactivas)
+    // =========================================================================
+    // mouseenter: Se activa cuando el cursor pasa por encima de una tarjeta
     $('.tarjeta').on('mouseenter', function(){
         $(this).css({ 'transform': 'translateY(-8px)', 'box-shadow': '0 14px 28px var(--card-shadow)' });
     });
+
+    // mouseleave: Se activa cuando el cursor sale de la tarjeta
     $('.tarjeta').on('mouseleave', function(){
         $(this).css({ 'transform': 'translateY(0)', 'box-shadow': '0 8px 20px var(--card-shadow)' });
     });
 
+    // dblclick: Se activa al dar un doble clic rápido sobre una tarjeta
     $('.tarjeta').on('dblclick', function(){
         $(this).siblings('.tarjeta').fadeOut(400).fadeIn(400);
     });
