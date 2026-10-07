@@ -7,6 +7,18 @@
 $(document).ready(function(){
 
     // =========================================================================
+    // RELOJ / FECHA Y HORA ACTUAL
+    // =========================================================================
+    function actualizarReloj() {
+        var ahora = new Date();
+        var opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        var fechaFormateada = ahora.toLocaleString('es-MX', opciones);
+        $('#reloj').text(fechaFormateada);
+    }
+    setInterval(actualizarReloj, 1000);
+    actualizarReloj();
+
+    // =========================================================================
     // MODO OSCURO / MODO CLARO
     // =========================================================================
     $('#btn-tema').on('click', function(e) {
@@ -19,7 +31,6 @@ $(document).ready(function(){
             $(this).text('🌙 Modo Oscuro');
         }
     });
-
 
     // =========================================================================
     // MANIPULACIÓN DOM Y EFECTOS // GALERÍA TIPO VISOR CON JQUERY
@@ -42,7 +53,6 @@ $(document).ready(function(){
         });
     });
 
-   
     // =========================================================================
     // VALIDACIÓN DEL FORMULARIO CON JAVASCRIPT / JQUERY
     // =========================================================================
