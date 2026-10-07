@@ -20,7 +20,28 @@ $(document).ready(function(){
         }
     });
 
-   
+
+    // =========================================================================
+    // MANIPULACIÓN DOM Y EFECTOS // GALERÍA TIPO VISOR CON JQUERY
+    // =========================================================================
+    $('.miniatura').on('click', function(){
+        // Si la imagen ya está activa, no hace nada
+        if($(this).hasClass('activa')) {
+            return;
+        }
+        
+        $('.miniatura').removeClass('activa');
+        $(this).addClass('activa');
+        
+        // Obtenemos la ruta de la imagen miniatura usando attr()
+        var nuevaImagen = $(this).attr('src');
+        
+        // Efecto fadeOut() al visor grande, cambia el src, y luego fadeIn()
+        $('#img-visor').fadeOut(250, function(){
+            $(this).attr('src', nuevaImagen).fadeIn(250);
+        });
+    });
+
    
     // =========================================================================
     // VALIDACIÓN DEL FORMULARIO CON JAVASCRIPT / JQUERY
