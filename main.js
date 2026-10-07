@@ -49,6 +49,24 @@ $(document).ready(function(){
     });
 
     // =========================================================================
+    // PLUGIN JQUERY: bxSlider 
+    // =========================================================================
+    try {
+        $('.slider-sobre-mi').bxSlider({
+            pause: 3000,
+            controls: false,
+            pager: true,
+            minSlides: 1,
+            maxSlides: 2, 
+            slideWidth: 480, 
+            slideMargin: 20,
+            responsive: true
+        });
+    } catch(e) {
+        console.log("Error al cargar bxSlider:", e);
+    }
+
+    // =========================================================================
     // MANIPULACIÓN DOM Y EFECTOS // GALERÍA TIPO VISOR CON JQUERY
     // =========================================================================
     $('.miniatura').on('click', function(){
